@@ -1,7 +1,5 @@
 public class InstructionObject{
-	public enum Type{
-		READ, WRITE, Bad;
-	}
+	Type type;
 	String subjectName;
 	String objectName;
 
