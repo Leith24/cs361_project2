@@ -1,0 +1,1 @@
+public enum SecurityLevel{HIGH,LOW};

@@ -3,25 +3,7 @@ import java.util.Scanner;
 import java.io.File;
 public class SecureSystem{
      
-    public class Subject{
-    	SecurityLevel security;
-    	String name;
-    	public Subject(String name, SecurityLevel security){
-    		this.security =  security;
-    		this.name = name;
-    	}
-    }
-
-    public class Object{
-    	SecurityLevel security;
-    	String name;
-    	public Object(String name, SecurityLevel security){
-    		this.security = security;
-    		this.name = name;
-    	}
-
-    }
-
+   
 	public static void main(String args[]) throws Exception {
 
 		SecurityLevel low = SecurityLevel.LOW;

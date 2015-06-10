@@ -1,14 +1,14 @@
 public class ReferenceManager{
 
-    public enum SecurityLevel{HIGH,LOW};
+    
 
-    Subject lyle;
-    Subject hal;
-    Object hobj;
-    Object lobj;
-    InstructionObject instr;
-    Object objectUsed;
-    Subject subjectUsed;
+    static Subject lyle;
+    static Subject hal;
+    static Object hobj;
+    static Object lobj;
+    static InstructionObject instr;
+    static Object objectUsed;
+    static Subject subjectUsed;
 
     public ReferenceManager(Subject lyle, Subject hal, Object hobj, Object lobj){
 
@@ -19,17 +19,17 @@ public class ReferenceManager{
     	
     }
 
-    public setInstruction(InstructionObject instr){
+    public void setInstruction(InstructionObject instr){
     	this.instr=instr;
     }
 
     public boolean isValid(){
 
     	if(!checkObjExist()){
-    		false;
+    		return false;
     	}
 
-    	else if (instr.type.equals(type.BAD)){
+    	else if (instr.type.equals(Type.BAD)){
     		return false;
     	}
     	else
@@ -38,12 +38,15 @@ public class ReferenceManager{
 
     public boolean isDominant(){
         /*returns whether there is dominance*/
-    	return (instr.type.equals(Type.READ) && objectUsed.security <= subjectUsed.security) ||
-    	  (istr.type.equals(Type.WRITE) && subjectUsed.security <= objectUsed.security );
+    	return (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.HIGH) &&
+    	 (subjectUsed.security.equals(SecurityLevel.LOW) || subjectUsed.security.equals(SecurityLevel.HIGH)))) ||
+    	  
+    	  (instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.LOW) &&
+    	   (objectUsed.security.equals(SecurityLevel.HIGH) || objectUsed.security.equals(SecurityLevel.LOW))));
 
     }
     
-    public boolean getObjectSubject(){
+    public void getObjectSubject(){
     	if (instr.subjectName.equals(lyle.name))
     		subjectUsed = lyle;
     	else 
