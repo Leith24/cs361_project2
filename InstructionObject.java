@@ -25,10 +25,12 @@ public class InstructionObject{
 			   subjectName = tok[1];
 			   objectName = tok[2];
 			   val = Integer.parseInt(tok[3]);
+			   //System.out.println(val);
 		} else {//return bad instruction object}
 
 			type = Type.BAD;
+
 	    }
-	    System.out.println(type.toString());
+	    //System.out.println(type.toString());
 	}	
 }
