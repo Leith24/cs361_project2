@@ -1,5 +1,5 @@
 cureSystem testCase2
-BAD INSTRUCTION
+Bad Instruction
 The current state is: 
    lobj has value: 0
    hobj has value: 0
@@ -15,7 +15,7 @@ The current state is:
    hal has recently read: 0
 
 
-BAD INSTRUCTION
+Bad Instruction
 The current state is: 
    lobj has value: 0
    hobj has value: 0
@@ -23,7 +23,7 @@ The current state is:
    hal has recently read: 0
 
 
-BAD INSTRUCTION
+Bad Instruction
 The current state is: 
    lobj has value: 0
    hobj has value: 0
@@ -63,7 +63,7 @@ The current state is:
    hal has recently read: 0
 
 
-BAD INSTRUCTION
+Bad Instruction
 The current state is: 
    lobj has value: 0
    hobj has value: 3
@@ -71,7 +71,7 @@ The current state is:
    hal has recently read: 0
 
 
-BAD INSTRUCTION
+Bad Instruction
 The current state is: 
    lobj has value: 0
    hobj has value: 3
