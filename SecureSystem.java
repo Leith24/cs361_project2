@@ -28,8 +28,6 @@ public class SecureSystem{
        		if(ref.isValid()){
              if (count++ == 0)
                 ref.initiateObjectManager();
-       			//object monitro stuff
-            //System.out.println("is valid");
                 ref.execute();
                 output(true, ref);
             } else { output(false, ref);}

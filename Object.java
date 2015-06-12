@@ -4,7 +4,7 @@ public class Object{
 	int value = 0;
 	public Object(String n, SecurityLevel sec){
 		security = sec;
-		name = n;
+		name = n.toLowerCase();
 	}
 
 }

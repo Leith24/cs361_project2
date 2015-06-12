@@ -34,7 +34,6 @@ public class ReferenceManager{
 
         if(instr.type.equals(Type.READ)) { 
             subjectUsed.temp = obman.read();
-            System.out.println("checking obman----------: " + obman.read());
             syncSubjects();
             output = subjectUsed.name + " reads " + objectUsed.name;
         } else {
@@ -49,11 +48,9 @@ public class ReferenceManager{
 
     public void syncSubjects(){
         if (subjectUsed.name.equals(lyle.name)){
-            System.out.println("value getting synched: " + subjectUsed.temp);
             lyle.temp = subjectUsed.temp;
         }
         else {
-            System.out.println("value getting synched: " + subjectUsed.temp);
             hal.temp = subjectUsed.temp;
         }
     }
@@ -159,11 +156,9 @@ public class ReferenceManager{
             object_used.value = val;
             if (object_used.name.equals(lobj.name)){
                 lobj.value = object_used.value;
-                System.out.println("new value in object: " + lobj.value);
             }
             else{
                 hobj.value = object_used.value;
-                System.out.println("new value in object: " + hobj.value);
             }
 
         }

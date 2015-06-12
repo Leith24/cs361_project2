@@ -13,8 +13,8 @@ public class InstructionObject{
 			   tok[2] instanceof String){
 			
 			type = Type.READ;
-		    subjectName = tok[1];
-		    objectName = tok[2];
+		    subjectName = tok[1].toLowerCase();
+		    objectName = tok[2].toLowerCase();
 
 		}
 		else if (tok[0].toLowerCase().equals("write")&& tok.length == 4 && tok[1] instanceof String &&
@@ -22,15 +22,20 @@ public class InstructionObject{
 			  
 
 			   type = Type.WRITE;
-			   subjectName = tok[1];
-			   objectName = tok[2];
-			   val = Integer.parseInt(tok[3]);
-			   //System.out.println(val);
-		} else {//return bad instruction object}
+			   subjectName = tok[1].toLowerCase();
+			   objectName = tok[2].toLowerCase();
+
+			   try{
+			   		val = Integer.parseInt(tok[3]);}
+			   catch( NumberFormatException e) {
+			   	    type = Type.BAD;
+			   }
+			   
+		} else {
 
 			type = Type.BAD;
 
 	    }
-	    //System.out.println(type.toString());
+	    
 	}	
 }
