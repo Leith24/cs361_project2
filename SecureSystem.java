@@ -39,7 +39,7 @@ public class SecureSystem{
 
   public static void output(boolean valid, ReferenceManager reference){
     if (reference.instr.type.equals(Type.BAD)){
-          System.out.println("BAD INSTRUCTION");
+          System.out.println("Bad Instruction");
         }
       System.out.println("The current state is: ");
       System.out.println("   " + reference.lobj.name + " has value: " + reference.lobj.value);
