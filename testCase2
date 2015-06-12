@@ -1,0 +1,11 @@
+Test for incorrect write
+read Hal HObj
+write Lyle HObj abc
+write Lyle LObj def
+read Hal LObj
+read Lyle HObj
+write Hal LObj 44
+write Lyle HObj 3
+reader Hal HObj
+writer Lyle LObj 2
+read Lyle LObj

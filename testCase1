@@ -1,0 +1,12 @@
+CHECK FOR DIFFERING BAD INSTRUCTIONS
+make Hal MObj 32
+find Lyle MObj
+How is the weather today?
+create Hal MObj 32
+locate Hal MObj
+write Lyle LObj 11
+read Hal LObj
+Are you sure you created the MObj, Hal?
+write Lyle HObj 32
+read Lyle HObj
+read Hal HObj
