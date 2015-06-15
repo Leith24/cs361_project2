@@ -17,6 +17,18 @@ public class InstructionObject{
 		    objectName = tok[2].toLowerCase();
 
 		}
+		else if(tok[0].toLowerCase("create") && tok.length == 3&&tok[1] instanceof String && 
+			    tok[2] instance of String){
+			type = Type.CREATE;
+
+		}
+		else if(tok[0].toLowerCase("destroy") && tok.length == 3&&tok[1] instanceof String && 
+			    tok[2] instance of String){
+			type = Type.DESTROY;
+		}
+		else if(tok[0].toLowerCase("run")&& tok.length == 2 && tok[1] instanceof String){
+			type = Type.RUN;
+		}
 		else if (tok[0].toLowerCase().equals("write")&& tok.length == 4 && tok[1] instanceof String &&
 			   tok[2] instanceof String){
 			  
