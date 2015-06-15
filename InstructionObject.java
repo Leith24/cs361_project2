@@ -9,40 +9,36 @@ public class InstructionObject{
 		String [] tok = instr.split("[ ]+");
 
 
-		if (tok[0].toLowerCase().equals("read") && tok.length == 3 && tok[1] instanceof String &&
-			   tok[2] instanceof String){
+		if (tok[0].toLowerCase().equals("read")){
 			
 			type = Type.READ;
 		    subjectName = tok[1].toLowerCase();
 		    objectName = tok[2].toLowerCase();
 
 		}
-		else if(tok[0].toLowerCase("create") && tok.length == 3&&tok[1] instanceof String && 
-			    tok[2] instance of String){
+		else if(tok[0].toLowerCase("create"){
 			type = Type.CREATE;
 		    subjectName = tok[1].toLowerCase();
 		    objectName = tok[2].toLowerCase();
 
 		}
-		else if(tok[0].toLowerCase("destroy") && tok.length == 3&&tok[1] instanceof String && 
-			    tok[2] instance of String){
+		else if(tok[0].toLowerCase("destroy")){
 			type = Type.DESTROY;
 
 			subjectName = tok[1].toLowerCase();
 		    objectName = tok[2].toLowerCase();
 		}
-		else if(tok[0].toLowerCase("run")&& tok.length == 2 && tok[1] instanceof String){
+		else if(tok[0].toLowerCase("run")){
 			type = Type.RUN;
 			subjectName = tok[1].toLowerCase();
 		}
-		else if (tok[0].toLowerCase().equals("write")&& tok.length == 4 && tok[1] instanceof String &&
-			   tok[2] instanceof String){
+		else if (tok[0].toLowerCase().equals("write")){
 			  
 
 			   type = Type.WRITE;
 			   subjectName = tok[1].toLowerCase();
 			   objectName = tok[2].toLowerCase();
-
+			   /*take this out later*/
 			   try{
 			   		val = Integer.parseInt(tok[3]);}
 			   catch( NumberFormatException e) {

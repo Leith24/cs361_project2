@@ -12,10 +12,6 @@ public class SecureSystem{
 		Subject lyle = new Subject("Lyle", low);
 		Subject hal = new Subject("Hal",high);
 
-		Object lObj = new Object("LObj", low);
-		Object hObj = new Object("HObj", high);
-
-
         ReferenceManager ref = new ReferenceManager(lyle, hal, lObj, hObj);
         Scanner scan = new Scanner(new File(args[0]));
         int count = 0;
