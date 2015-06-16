@@ -16,19 +16,19 @@ public class InstructionObject{
 		    objectName = tok[2].toLowerCase();
 
 		}
-		else if(tok[0].toLowerCase("create"){
+		else if(tok[0].toLowerCase().equals("create")){
 			type = Type.CREATE;
 		    subjectName = tok[1].toLowerCase();
 		    objectName = tok[2].toLowerCase();
 
 		}
-		else if(tok[0].toLowerCase("destroy")){
+		else if(tok[0].toLowerCase().equals("destroy")){
 			type = Type.DESTROY;
 
 			subjectName = tok[1].toLowerCase();
 		    objectName = tok[2].toLowerCase();
 		}
-		else if(tok[0].toLowerCase("run")){
+		else if(tok[0].toLowerCase().equals("run")){
 			type = Type.RUN;
 			subjectName = tok[1].toLowerCase();
 		}

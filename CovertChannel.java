@@ -1,15 +1,18 @@
-import java.util.Random;
-import java.util.Scanner;
-import java.io.File;
 
+import java.io.*;
+import java.util.*;
 public class CovertChannel{
 	public static final int NUM_INSTRUCTIONS = 4;
 	public static final int NUM_SUBJECTS = 2;
 	
-	public static void main(String args[]){
+	public static void main(String args[]) throws Exception{
 
-		Scanner scan = new Scanner(new File(args[0]));
-		generate();
+		/*creating new file stream with argument*/
+		Bytes bytes = new Bytes(args[0]);
+		byte[] array;
+		while ((array = bytes.getByte()) != null) 
+			System.out.println(array.toString());
+	    
 
 
 	}
