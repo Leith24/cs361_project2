@@ -8,10 +8,10 @@ public class CovertChannel{
 	public static void main(String args[]) throws Exception{
 
 		/*creating new file stream with argument*/
-		Bytes bytes = new Bytes(args[0]);
+		/*Bytes bytes = new Bytes(args[0]);
 		byte[] array;
 		while ((array = bytes.getByte()) != null) 
-			System.out.println(array.toString());
+			System.out.println(array.toString());*/
 	    
 
 
