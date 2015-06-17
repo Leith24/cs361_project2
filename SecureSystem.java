@@ -12,11 +12,10 @@ public class SecureSystem{
 		Subject lyle = new Subject("Lyle", low);
 		Subject hal = new Subject("Hal",high);
 
-		Object lObj = new Object("LObj", low);
-		Object hObj = new Object("HObj", high);
+    Object lobj = new Object("lObj", low);
+    Object hobj = new Object("hobj", high);
 
-
-        ReferenceManager ref = new ReferenceManager(lyle, hal, lObj, hObj);
+        ReferenceManager ref = new ReferenceManager(lyle, hal, lobj, hobj);
         Scanner scan = new Scanner(new File(args[0]));
         int count = 0;
         while (scan.hasNext()){

@@ -1,3 +1,5 @@
 public enum Type{
-	READ, WRITE, BAD, CREATE, RUN, DESTROY;
+
+	READ, WRITE, BAD, CREATE, DESTROY, RUN;
 }
+
