@@ -12,7 +12,7 @@ public class Bytes{
 	/*method that reads in nextLine of file and coverts it into array of bytes*/
 	public String[] getBitsFromLine(){
 
-		return scan.hasNext() == true ? convert_to_binary(scan.nextLine().getBytes()) : 
+		return scan.hasNextLine() == true ? convert_to_binary(scan.nextLine().getBytes()) : 
 		    null;
 
 	}

@@ -15,8 +15,8 @@ public class CovertChannel{
 	   
 	    while((bits_array=bytes.getBitsFromLine()) != null) {
 	    	
-	        System.out.println(Arrays.toString(bits_array));
 	        
+	        generate(bits_array);
 
 	    }
 	  
@@ -26,40 +26,7 @@ public class CovertChannel{
 	}
 
 	public static String generate(){
-	// 	Random random = new Random();
-	// 	int value = random.nextInt(NUM_INSTRUCTIONS);
-	// 	String instruction, subject, object;
-	// 	Boolean number = false;
-		
- //        /*generate instruction*/
-	// 	if (value < 1){
-	// 	    instruction = "READ ";
-	// 	}
-	// 	else if (value < 2 && value > 0){
-	// 		instruction = "WRITE ";
-	// 		number=true;
-	// 	}
-	// 	else if (value < 3 && value > 1){
-	// 		instruction = "CREATE ";
-	// 	}
-	// 	else{
-	// 		instruction = "DESTROY ";
-	// 	}
-
-	// 	/*generate subject*/
-	// 	if (random.nextInt(NUM_SUBJECTS)<1)
-	// 		subject = "lyle ";
-	// 	else 
-	// 		subject = "hal ";
-
-	// 	/*generate object*/
-	// 	if (random.nextInt(NUM_SUBJECTS)<1)
-	// 		object = "hobj";
-	// 	else 
-	// 		object = "lobj";
-
-	// 	return (number == false) ? instruction + subject + object : 
-	// 		instruction + subject + object +" "+ random.nextInt(51);
+	
 		return "";
     }
 

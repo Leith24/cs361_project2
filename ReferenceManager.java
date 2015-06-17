@@ -4,44 +4,37 @@ public class ReferenceManager{
 
     static Subject lyle;
     static Subject hal;
-    static Object hobj;
-    static Object lobj;
     static InstructionObject instr;
-    static Object objectUsed;
     static Subject subjectUsed;
+    ObjectManager objectManger;
     String output;
-    ObjectManager obman;
 
-    public ReferenceManager(Subject lyle, Subject hal, Object lobj, Object hobj){
+    public ReferenceManager(Subject lyle, Subject hal){
 
     	this.lyle = lyle;
     	this.hal = hal;
-    	this.hobj = hobj;
-    	this.lobj = lobj;
-    	
     }
     
-    public void initiateObjectManager(){
+    public void initiateObjectManager(SecurityLevel security){
     
-         obman = new ObjectManager(hobj, lobj, objectUsed);
+         objectManger = new ObjectManager();
             
-
     }
     
     public void execute(){
 
-        obman.changeObjectUsed(objectUsed);
+   
 
         if(instr.type.equals(Type.READ)) { 
-            subjectUsed.temp = obman.read();
+            subjectUsed.temp = objectManger.read();
             syncSubjects();
-            output = subjectUsed.name + " reads " + objectUsed.name;
+          //  output = subjectUsed.name + " reads " + objectUsed.name;
         } else {
-            obman.write(instr.val);
-            output = subjectUsed.name + " writes value " + instr.val +
-            " to " + objectUsed.name; 
+            objectManger.write(instr.val);
+          //  output = subjectUsed.name + " writes value " + instr.val +
+           // " to " + objectUsed.name; 
         }
-        System.out.println(output);
+       // System.out.println(output);
 
 
     }
@@ -55,10 +48,6 @@ public class ReferenceManager{
         }
     }
 
-    public void output(){
-
-
-    }
 
     public void setInstruction(InstructionObject instr){
     	this.instr=instr;
@@ -66,59 +55,47 @@ public class ReferenceManager{
     }
 
     public boolean isValid(){
-        if (instr.type.equals(Type.BAD)){
-           
-            return false;
+       
 
-        }
-
-    	else if(!checkObjExist()){
-
-    		return false;
-    	}
-
-
-
-    	else{
             /*check for domanince, set to zero if not*/
-            getObjectSubject();
+            setObjectSubject();
 
     		if( !isDominant() ){
                 if(instr.type.equals(Type.READ)) { 
                     subjectUsed.temp = 0;
 
-                    output = subjectUsed.name + " reads " + objectUsed.name;
+                  //  output = subjectUsed.name + " reads " + objectUsed.name;
                 } else {
         
-                    output = subjectUsed.name + " writes value " + instr.val +
-                    " to " + objectUsed.name; 
+                   // output = subjectUsed.name + " writes value " + instr.val +
+                   // " to " + objectUsed.name; 
                 }
                 syncSubjects();
-                System.out.println(output);
+                //System.out.println(output);
                 return false;
             } 
             return true;
 
-        }
+   
     }
 
     public boolean isDominant(){
         /*returns whether there is dominance*/
     	return (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.LOW) && 
-    	 (subjectUsed.security.equals(SecurityLevel.LOW) || subjectUsed.security.equals(SecurityLevel.HIGH)))) || 
+    	(subjectUsed.security.equals(SecurityLevel.LOW) || subjectUsed.security.equals(SecurityLevel.HIGH)))) || 
 
-         (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.HIGH) &&
-         (subjectUsed.security.equals(SecurityLevel.HIGH) ))) ||
+        (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.HIGH) &&
+        (subjectUsed.security.equals(SecurityLevel.HIGH) ))) ||
     	  
-    	  (instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.LOW) &&
-    	   (objectUsed.security.equals(SecurityLevel.HIGH) || objectUsed.security.equals(SecurityLevel.LOW)))) ||
+    	(instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.LOW) &&
+    	(objectUsed.security.equals(SecurityLevel.HIGH) || objectUsed.security.equals(SecurityLevel.LOW)))) ||
 
-          (instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.HIGH) &&
-           (objectUsed.security.equals(SecurityLevel.HIGH) )));
+        (instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.HIGH) &&
+        (objectUsed.security.equals(SecurityLevel.HIGH) )));
 
     }
     
-    public void getObjectSubject(){
+    public void setObjectSubject(){
     	if (instr.subjectName.equals(lyle.name))
     		subjectUsed = lyle;
     	else 
@@ -131,40 +108,62 @@ public class ReferenceManager{
     }
     public boolean checkObjExist(){
 
-    	return( instr.subjectName.equals(lyle.name) ||  instr.subjectName.equals(hal.name)  && 
-    	  (instr.objectName.equals(hobj.name) )|| instr.objectName.equals(lobj.name));
+    	return( instr.subjectName.equals(lyle.name) ||  instr.subjectName.equals(hal.name))  && 
+    	  (object_exists(instr.objectName) > -1);
     }
+
 
 	public class ObjectManager {
 
-        Object lobj;
-        Object hobj;
-        Object object_used;
-		
-
-        public ObjectManager(Object h, Object l, Object used){
-            lobj = l;
-            hobj = h;
-            object_used = used;
+        /*lists of objects created*/
+        Object[] objects;		
+        Object objectUsed; //don't know if need this variable
+        public ObjectManager(Object o){
+            objects = new ArrayList<Object>();
         }
 
         public int read(){
-            return object_used.value;
+            return object.value;
         }
 
         public void write(int val){
-            object_used.value = val;
-            if (object_used.name.equals(lobj.name)){
-                lobj.value = object_used.value;
-            }
-            else{
-                hobj.value = object_used.value;
-            }
+            object.value = val;
 
         }
 
-        public void changeObjectUsed(Object diff){
-            object_used = diff;
+        /*The semantics of CREATE is that a new object is added to 
+        the state with SecurityLevel equal to the level of the 
+        creating subject. It is given an initial value of 0. If 
+        there already exists an object with that name at any level, 
+        the operation is a no-op.*/
+        public void create(SecurityLevel sec, String name){
+
+            /*checking to make sure no object with the same name exists 
+            before creating, else no op
+            if (!object.name.toLowerCase().equals(name.toLowerCase()))*/
+                object.add(new Object(name, sec));
         }
+
+        /*DESTROY will eliminate the designated object from the state,
+         assuming that the object exists and the subject has 
+         WRITE access to the object according to the *-property of 
+         BLP. Otherwise, the operation is a no-op.*/
+        public void destroy(Object o){
+            int index;
+            if ((index = object_exists(o.name)) != -1){
+                objects.remove(index);
+            }
+                
+
+        }
+
+        public int object_exists(String name){
+            /*return true if the object of hte same name exists, else false*/
+            for (int i = 0;i < objects.length; i++)
+                if (name.toLowerCase().equals(objects.get(i).name().toLowerCase()))
+                    return i;
+            return -1;
+        }
+
 	}
 }
