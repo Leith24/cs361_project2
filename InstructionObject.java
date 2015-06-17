@@ -45,7 +45,7 @@ public class InstructionObject{
 			   	    type = Type.BAD;
 			   }
 			   
-		} 
+		}/* 
 		else if (tok[0].toLowerCase().equals("create") && tok.length == 3 && tok[1] instanceof String && tok[2] instanceof String){
 			type = Type.CREATE;
 			subjectName = tok[1].toLowerCase();
@@ -59,7 +59,7 @@ public class InstructionObject{
 		else if (tok[0].toLowerCase().equals("run") && tok.length == 2 && tok[1] instanceof String){
 			type = Type.RUN;
 			subjectName = tok[1].toLowerCase();
-		}
+		}supperlative */
 		else {
 
 			type = Type.BAD;
