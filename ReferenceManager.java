@@ -6,7 +6,7 @@ public class ReferenceManager{
     static Subject hal;
     static InstructionObject instr;
     static Subject subjectUsed;
-    ObjectManager objectManger;
+    ObjectManager objectManager;
     String output;
 
     public ReferenceManager(Subject lyle, Subject hal){
@@ -17,7 +17,7 @@ public class ReferenceManager{
     
     public void initiateObjectManager(SecurityLevel security){
     
-         objectManger = new ObjectManager();
+         objectManager = new ObjectManager();
             
     }
     
@@ -26,11 +26,27 @@ public class ReferenceManager{
    
 
         if(instr.type.equals(Type.READ)) { 
-            subjectUsed.temp = objectManger.read();
+            subjectUsed.temp = objectManager.read();
             syncSubjects();
           //  output = subjectUsed.name + " reads " + objectUsed.name;
-        } else {
-            objectManger.write(instr.val);
+        } 
+
+        else if (instr.type.equals(Type.CREATE)) {
+
+
+        } 
+        else if (instr.type.equals(Type.DESTROY)) {
+
+            objectManager.destroy(instr.objectName);
+
+        } 
+        else if (instr.type.equals(Type.RUNS)){
+
+            lyle.run_Lyle();
+
+        }
+        else {
+            objectManager.write(instr.val);
           //  output = subjectUsed.name + " writes value " + instr.val +
            // " to " + objectUsed.name; 
         }
@@ -80,13 +96,13 @@ public class ReferenceManager{
     }
 
     public boolean isDominant(){
-        /*returns whether there is dominance*/
+        /* simple property */
     	return (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.LOW) && 
     	(subjectUsed.security.equals(SecurityLevel.LOW) || subjectUsed.security.equals(SecurityLevel.HIGH)))) || 
 
         (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.HIGH) &&
         (subjectUsed.security.equals(SecurityLevel.HIGH) ))) ||
-    	  
+    	  /* star property */
     	(instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.LOW) &&
     	(objectUsed.security.equals(SecurityLevel.HIGH) || objectUsed.security.equals(SecurityLevel.LOW)))) ||
 
@@ -146,9 +162,9 @@ public class ReferenceManager{
          assuming that the object exists and the subject has 
          WRITE access to the object according to the *-property of 
          BLP. Otherwise, the operation is a no-op.*/
-        public void destroy(Object o){
+        public void destroy(String name){
             int index;
-            if ((index = object_exists(o.name)) != -1){
+            if ((index = object_exists(name)) != -1){
                 objects.remove(index);
             }
                 

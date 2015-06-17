@@ -9,14 +9,21 @@ public class CovertChannel{
 	
 	public static void main(String args[]) throws Exception{
 
-		
+		String[] instructions = ["create hal obj, create lyle obj, 
+		write lyle obj 1, read lyle obj, destroy lyle obj, run lyle"];
 	    Bytes bytes = new Bytes(args[0]);
 	    String[] bits_array;
+	    ReferenceManager ref = new ReferenceManager(new Subject("Lyle", SecurityLevel.LOW),
+	    	new Subject("Hal", SecurityLevel.HIGH));
+	   
 	   
 	    while((bits_array=bytes.getBitsFromLine()) != null) {
 	    	
-	        
-	        generate(bits_array);
+	    	for (int i = 0 ; i < instructions.length; i++){
+	    		InstructionObject instrunctionObject = new InstructionObject(
+	    			instructions[i]);
+	    	}
+
 
 	    }
 	  
@@ -25,14 +32,6 @@ public class CovertChannel{
 
 	}
 
-	public static String generate(){
-		
-
-		
-
-		
-		return "";
-    }
 
 	
 
