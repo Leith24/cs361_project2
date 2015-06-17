@@ -18,7 +18,7 @@ public class SecureSystem{
         ReferenceManager ref = new ReferenceManager(lyle, hal, lobj, hobj);
         Scanner scan = new Scanner(new File(args[0]));
         int count = 0;
-        while (scan.hasNext(b)){
+        while (scan.hasNext()){
           
 
        		InstructionObject obj = new InstructionObject(scan.nextLine());

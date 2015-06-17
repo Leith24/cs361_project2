@@ -9,21 +9,14 @@ public class CovertChannel{
 	
 	public static void main(String args[]) throws Exception{
 
-		/*creating new file stream with argument*/
-		/*Bytes bytes = new Bytes(args[0]);
-		byte[] array;
-		while ((array = bytes.getByte()) != null) 
-			System.out.println(array.toString());*/
-	    Bytes bytes = new Bytes("test");
-	    byte[] b;
-	   // Integer inter = new Integer();
-	    while((b=bytes.getByte()) != null) {
-	    	System.out.println(Arrays.toString(b));
-	        for(int j = 0; j<b.length; j++){
-		    	int i = b[j];
-		    	System.out.println(Integer.toBinaryString(i));
-	        }
-	        System.out.println(Integer.toBinaryString(255));
+		
+	    Bytes bytes = new Bytes(args[0]);
+	    String[] bits_array;
+	   
+	    while((bits_array=bytes.getBitsFromLine()) != null) {
+	    	
+	        System.out.println(Arrays.toString(bits_array));
+	        
 
 	    }
 	  
@@ -67,8 +60,8 @@ public class CovertChannel{
 
 	// 	return (number == false) ? instruction + subject + object : 
 	// 		instruction + subject + object +" "+ random.nextInt(51);
-		
-	// }
+		return "";
+    }
 
 	
 
