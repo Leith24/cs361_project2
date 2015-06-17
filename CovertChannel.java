@@ -22,6 +22,8 @@ public class CovertChannel{
 	    	for (int i = 0 ; i < instructions.length; i++){
 	    		InstructionObject instrunctionObject = new InstructionObject(
 	    			instructions[i]);
+	    		ref.setInstruction(instructionObject);
+	    		
 	    	}
 
 

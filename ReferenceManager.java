@@ -21,7 +21,7 @@ public class ReferenceManager{
             
     }
     
-    public void execute(){
+    public void execute(String bits){
 
    
 
@@ -42,7 +42,7 @@ public class ReferenceManager{
         } 
         else if (instr.type.equals(Type.RUNS)){
 
-            lyle.run_Lyle();
+            lyle.run_Lyle(bits);
 
         }
         else {
