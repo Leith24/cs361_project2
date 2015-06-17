@@ -38,7 +38,4 @@ public class Bytes{
 		return result;
 
 	}
-	
-
-
 }
