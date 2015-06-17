@@ -26,7 +26,11 @@ public class CovertChannel{
 	}
 
 	public static String generate(){
-	
+		
+
+		
+
+		
 		return "";
     }
 

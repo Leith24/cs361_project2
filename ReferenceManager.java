@@ -138,9 +138,7 @@ public class ReferenceManager{
         the operation is a no-op.*/
         public void create(SecurityLevel sec, String name){
 
-            /*checking to make sure no object with the same name exists 
-            before creating, else no op
-            if (!object.name.toLowerCase().equals(name.toLowerCase()))*/
+            if (!object_exists(name))
                 object.add(new Object(name, sec));
         }
 

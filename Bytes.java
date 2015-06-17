@@ -9,7 +9,7 @@ public class Bytes{
 		this.fileName = fileName;
 		scan = new Scanner(new File(fileName));
 	}
-	/*method that reads in nextLine of file and coverts it into array of bytes*/
+	/*method that reads in nextLine of file and coverts it into array of bits*/
 	public String[] getBitsFromLine(){
 
 		return scan.hasNextLine() == true ? convert_to_binary(scan.nextLine().getBytes()) : 
@@ -18,8 +18,7 @@ public class Bytes{
 	}
 
 	/*method that converts array of bytes to array of corresonding bits
-	  plus the ENDOFLINE ascii number at the end. the returning array will be 
-	  one index longer as a result*/
+	  plus the ENDOFLINE at the end. */
 	public String[] convert_to_binary(byte[] temp){
 
 		/*make returned array one length longer for end of line*/
