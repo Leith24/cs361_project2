@@ -27,7 +27,7 @@ public class ReferenceManager{
    
 
         if(instr.type.equals(Type.READ)) { 
-            subjectUsed.temp = objectManager.read(objectUsed);
+            subjectUsed.temp = objectManager.read(objectManager.getObject(instr.objectName));
             syncSubjects();
           //  output = subjectUsed.name + " reads " + objectUsed.name;
         } 
@@ -47,7 +47,7 @@ public class ReferenceManager{
 
         }
         else {
-            objectManager.write(instr.val,objectUsed);
+            objectManager.write(instr.val,objectManager.getObject(instr.objectName));
           //  output = subjectUsed.name + " writes value " + instr.val +
            // " to " + objectUsed.name; 
         }
@@ -98,17 +98,17 @@ public class ReferenceManager{
 
     public boolean isDominant(){
         /* simple property */
-    	return (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.LOW) && 
+    	return (instr.type.equals(Type.READ) && (objectManager.getObject(instr.objectName).security.equals(SecurityLevel.LOW) && 
     	(subjectUsed.security.equals(SecurityLevel.LOW) || subjectUsed.security.equals(SecurityLevel.HIGH)))) || 
 
-        (instr.type.equals(Type.READ) && (objectUsed.security.equals(SecurityLevel.HIGH) &&
+        (instr.type.equals(Type.READ) && (objectManager.getObject(instr.objectName).security.equals(SecurityLevel.HIGH) &&
         (subjectUsed.security.equals(SecurityLevel.HIGH) ))) ||
     	  /* star property */
     	(instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.LOW) &&
-    	(objectUsed.security.equals(SecurityLevel.HIGH) || objectUsed.security.equals(SecurityLevel.LOW)))) ||
+    	(objectManager.getObject(instr.objectName).security.equals(SecurityLevel.HIGH) || objectManager.getObject(instr.objectName).security.equals(SecurityLevel.LOW)))) ||
 
         (instr.type.equals(Type.WRITE) && (subjectUsed.security.equals(SecurityLevel.HIGH) &&
-        (objectUsed.security.equals(SecurityLevel.HIGH) )));
+        (objectManager.getObject(instr.objectName).security.equals(SecurityLevel.HIGH) )));
 
     }
     
@@ -179,8 +179,9 @@ public class ReferenceManager{
 		ob = objects.get(i);
                 if (name.toLowerCase().equals(ob.name.toLowerCase()))
                     return i;
-            return -1;
-        }
+        } 
+	   return -1;
+        
 	}
 	public Object getObject(String name){
 		Object ob;
