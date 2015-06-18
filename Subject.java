@@ -1,3 +1,4 @@
+import java.io.*; 
 public class Subject{
     	SecurityLevel security;
     	String name;
@@ -11,9 +12,9 @@ public class Subject{
     		output = new FileOutputStream(new File("log"));
     	}
 
-    	public run_Lyle(String bit){
+    	public void run_Lyle(String bit){
     		/*fill list up to eight buffer*/
-    		if (buffer.size() < 8){
+    		if (buffer.length() < 8){
     			buffer.append(bit);
 
     		/*when list is full, write output to file, clear 

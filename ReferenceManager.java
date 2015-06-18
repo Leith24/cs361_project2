@@ -1,3 +1,4 @@
+import java.util.*;
 public class ReferenceManager{
 
     
@@ -26,7 +27,7 @@ public class ReferenceManager{
    
 
         if(instr.type.equals(Type.READ)) { 
-            subjectUsed.temp = objectManager.read();
+            subjectUsed.temp = objectManager.read(objectUsed);
             syncSubjects();
           //  output = subjectUsed.name + " reads " + objectUsed.name;
         } 
@@ -40,13 +41,13 @@ public class ReferenceManager{
             objectManager.destroy(instr.objectName);
 
         } 
-        else if (instr.type.equals(Type.RUNS)){
+        else if (instr.type.equals(Type.RUN)){
 
             lyle.run_Lyle(bits);
 
         }
         else {
-            objectManager.write(instr.val);
+            objectManager.write(instr.val,objectUsed);
           //  output = subjectUsed.name + " writes value " + instr.val +
            // " to " + objectUsed.name; 
         }
@@ -74,7 +75,7 @@ public class ReferenceManager{
        
 
             /*check for domanince, set to zero if not*/
-            setObjectSubject();
+            //setObjectSubject();
 
     		if( !isDominant() ){
                 if(instr.type.equals(Type.READ)) { 
@@ -111,7 +112,7 @@ public class ReferenceManager{
 
     }
     
-    public void setObjectSubject(){
+   /* public void setObjectSubject(){
     	if (instr.subjectName.equals(lyle.name))
     		subjectUsed = lyle;
     	else 
@@ -121,29 +122,29 @@ public class ReferenceManager{
     		objectUsed = lobj;
     	else 
     		objectUsed = hobj;
-    }
+    }*/
     public boolean checkObjExist(){
 
     	return( instr.subjectName.equals(lyle.name) ||  instr.subjectName.equals(hal.name))  && 
-    	  (object_exists(instr.objectName) > -1);
+    	  (objectManager.object_exists(instr.objectName) > -1);
     }
 
 
 	public class ObjectManager {
 
         /*lists of objects created*/
-        Object[] objects;		
+        ArrayList<Object> objects;		
         Object objectUsed; //don't know if need this variable
-        public ObjectManager(Object o){
+        public ObjectManager(){
             objects = new ArrayList<Object>();
         }
 
-        public int read(){
-            return object.value;
+        public int read(Object o){
+            return objects.get(objects.indexOf(o)).value;
         }
 
-        public void write(int val){
-            object.value = val;
+        public void write(int val,Object o){
+            objects.get(objects.indexOf(o)).value = val;
 
         }
 
@@ -154,8 +155,8 @@ public class ReferenceManager{
         the operation is a no-op.*/
         public void create(SecurityLevel sec, String name){
 
-            if (!object_exists(name))
-                object.add(new Object(name, sec));
+            if (object_exists(name) == -1)
+                objects.add(new Object(name, sec));
         }
 
         /*DESTROY will eliminate the designated object from the state,
@@ -173,11 +174,19 @@ public class ReferenceManager{
 
         public int object_exists(String name){
             /*return true if the object of hte same name exists, else false*/
-            for (int i = 0;i < objects.length; i++)
-                if (name.toLowerCase().equals(objects.get(i).name().toLowerCase()))
+	    Object ob;
+            for (int i = 0;i < objects.size(); i++){
+		ob = objects.get(i);
+                if (name.toLowerCase().equals(ob.name.toLowerCase()))
                     return i;
             return -1;
         }
 
+	public Object getObject(String name){
+		Object ob;
+		for(
 	}
-}
+
+	}
+
+}}

@@ -9,8 +9,7 @@ public class CovertChannel{
 	
 	public static void main(String args[]) throws Exception{
 
-		String[] instructions = ["create hal obj, create lyle obj, 
-		write lyle obj 1, read lyle obj, destroy lyle obj, run lyle"];
+	    String[] instructions = {"create hal obj, create lyle obj, write lyle obj 1, read lyle obj, destroy lyle obj, run lyle"};
 	    Bytes bytes = new Bytes(args[0]);
 	    String[] bits_array;
 	    ReferenceManager ref = new ReferenceManager(new Subject("Lyle", SecurityLevel.LOW),
@@ -20,7 +19,7 @@ public class CovertChannel{
 	    while((bits_array=bytes.getBitsFromLine()) != null) {
 	    	
 	    	for (int i = 0 ; i < instructions.length; i++){
-	    		InstructionObject instrunctionObject = new InstructionObject(
+	    		InstructionObject instructionObject = new InstructionObject(
 	    			instructions[i]);
 	    		ref.setInstruction(instructionObject);
 	    		

@@ -42,7 +42,7 @@ public class InstructionObject{
 			   try{
 			   		val = Integer.parseInt(tok[3]);}
 			   catch( NumberFormatException e) {
-			   	    type = Type.BAD;
+			   	    //type = Type.BAD;
 			   }
 			   
 		}
