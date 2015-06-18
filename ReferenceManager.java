@@ -181,11 +181,16 @@ public class ReferenceManager{
                     return i;
             return -1;
         }
-
+	}
 	public Object getObject(String name){
 		Object ob;
-		for(
-	}
+		for(int i = 0;i<objects.size(); i++){
+			ob = objects.get(i);
+			if(name.toLowerCase().equals(ob.name.toLowerCase()))
+				return ob;
+
+		}
+		return null;
 
 	}
 
