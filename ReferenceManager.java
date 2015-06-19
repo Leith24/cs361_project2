@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class ReferenceManager{
 
     
@@ -43,7 +44,10 @@ public class ReferenceManager{
         } 
         else if (instr.type.equals(Type.RUN)){
 
-            lyle.run_Lyle(bits);
+            try{lyle.run_Lyle(bits);}
+	    catch(IOException e){
+		System.err.println("Caught IOException");
+	    }
 
         }
         else {

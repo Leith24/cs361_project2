@@ -5,14 +5,14 @@ public class Subject{
     	int temp = 0;
     	StringBuilder buffer;
     	OutputStream output;
-    	public Subject(String n, SecurityLevel sec){
+    	public Subject(String n, SecurityLevel sec) throws FileNotFoundException{
     		security =  sec;
     		name = n.toLowerCase();
     		buffer = new StringBuilder();
     		output = new FileOutputStream(new File("log"));
     	}
 
-    	public void run_Lyle(String bit){
+    	public void run_Lyle(String bit) throws IOException{
     		/*fill list up to eight buffer*/
     		if (buffer.length() < 8){
     			buffer.append(bit);
