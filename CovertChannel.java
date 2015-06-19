@@ -14,13 +14,14 @@ public class CovertChannel{
 	    if(args[0].equals("v")){
 		output = new FileOutputStream(new File("log"));
 		bytes = new Bytes(args[1]);
+		
 	    }
 	    else{
 	    	bytes = new Bytes(args[0]);
 	    }
 	    String[] bits_array;
 	    ReferenceManager ref = new ReferenceManager(new Subject("Lyle", SecurityLevel.LOW),
-	    	new Subject("Hal", SecurityLevel.HIGH));
+	    	new Subject("Hal", SecurityLevel.HIGH),output);
 	   
 	   
 	    while((bits_array=bytes.getBitsFromLine()) != null) {

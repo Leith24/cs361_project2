@@ -13,7 +13,7 @@ public class Subject{
 		output = new FileOutputStream(new File("log"));*/
     	}
 
-    	public void run_Lyle(String bit) throws IOException{
+    	public void run_Lyle(String bit,OutputStream output) throws IOException{
     		/*fill list up to eight buffer*/
     		if (buffer.length() < 8){
     			buffer.append(bit);
@@ -21,7 +21,7 @@ public class Subject{
     		/*when list is full, write output to file, clear 
     		buffer and continue*/
     		} else {
-    			//output.write(Integer.parseInt(buffer.toString(),2));
+    			output.write(Integer.parseInt(buffer.toString(),2));
     			buffer = new StringBuilder();
     		}
     	}

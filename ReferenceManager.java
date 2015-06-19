@@ -10,11 +10,12 @@ public class ReferenceManager{
     static Subject subjectUsed;
     ObjectManager objectManager;
     String output;
-
-    public ReferenceManager(Subject lyle, Subject hal){
+    static OutputStream out;
+    public ReferenceManager(Subject lyle, Subject hal, OutputStream out){
 
     	this.lyle = lyle;
     	this.hal = hal;
+	this.out = out;
     }
     
     public void initiateObjectManager(SecurityLevel security){
@@ -44,7 +45,7 @@ public class ReferenceManager{
         } 
         else if (instr.type.equals(Type.RUN)){
 
-            try{lyle.run_Lyle(bits);}
+            try{lyle.run_Lyle(bits, out);}
 	    catch(IOException e){
 		System.err.println("Caught IOException");
 	    }
