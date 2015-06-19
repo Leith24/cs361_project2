@@ -4,12 +4,13 @@ public class Subject{
     	String name;
     	int temp = 0;
     	StringBuilder buffer;
-    	OutputStream output;
+    	//OutputStream output;
     	public Subject(String n, SecurityLevel sec) throws FileNotFoundException{
     		security =  sec;
     		name = n.toLowerCase();
     		buffer = new StringBuilder();
-    		output = new FileOutputStream(new File("log"));
+    		/* this line should be in CovertChannel so we can log everything out of a verbose input
+		output = new FileOutputStream(new File("log"));*/
     	}
 
     	public void run_Lyle(String bit) throws IOException{
@@ -20,7 +21,7 @@ public class Subject{
     		/*when list is full, write output to file, clear 
     		buffer and continue*/
     		} else {
-    			output.write(Integer.parseInt(buffer.toString(),2));
+    			//output.write(Integer.parseInt(buffer.toString(),2));
     			buffer = new StringBuilder();
     		}
     	}
